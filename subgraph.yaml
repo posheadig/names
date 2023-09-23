@@ -21,6 +21,8 @@ dataSources:
       abis:
         - name: MintQuest
           file: ./abis/MintQuest.json
+        - name: SimpleToken
+          file: ./abis/SimpleToken.json
       eventHandlers:
         - event: TokenCreated(address,address)
           handler: handleTokenCreated
