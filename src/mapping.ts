@@ -7,7 +7,7 @@ export function handleTokenCreated(event: TokenCreated): void {
     token.owner = event.params.owner
     token.name = event.params.name
     token.symbol = event.params.symbol
-    token.totalSupply = TOTAL_SUPPLY
+    token.totalSupply = 10000
     token.kind = event.params.kind
     token.content = event.params.content
     token.save()
