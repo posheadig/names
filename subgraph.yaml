@@ -25,7 +25,6 @@ dataSources:
       eventHandlers:
         - event: TokenCreated(address,address)
           handler: handleTokenCreated
-
 templates:
   - name: SimpleToken
     kind: ethereum/contract
