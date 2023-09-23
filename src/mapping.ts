@@ -1,5 +1,5 @@
 import { TokenCreated } from "../generated/MintQuest/MintQuest"
-import { SimpleToken as SimpleTokenTemplate } from "../generated/templates"
+import { SimpleToken } from "../generated/SimpleToken/SimpleToken"
 import { Token } from "../generated/schema"
 
 export function handleTokenCreated(event: TokenCreated): void {
@@ -8,8 +8,8 @@ export function handleTokenCreated(event: TokenCreated): void {
 
     token.address = event.params.tokenAddress;
 
-    // Fetching the token details
-    let tokenContract = SimpleTokenTemplate.bind(event.params.tokenAddress);
+    // Instantiate the SimpleToken contract
+    let tokenContract = SimpleToken.bind(event.params.tokenAddress);
     token.name = tokenContract.name();
     token.symbol = tokenContract.symbol();
 
