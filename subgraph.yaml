@@ -26,3 +26,20 @@ dataSources:
       eventHandlers:
         - event: TokenCreated(address,address)
           handler: handleTokenCreated
+      templates:
+  - name: SimpleToken
+    kind: ethereum/contract
+    network: sepolia
+    source:
+      abi: SimpleToken
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      file: ./src/mapping.ts
+      entities:
+        - Token
+        - TokenCreation
+      abis:
+        - name: SimpleToken
+          file: ./abis/SimpleToken.json
