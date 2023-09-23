@@ -4,9 +4,6 @@ type Token @entity {
     owner: Bytes!
     name: String!
     symbol: String!
-    totalSupply: BigInt!
-    kind: String!
-    content: String!
 }
 
 type TokenCreation @entity {
