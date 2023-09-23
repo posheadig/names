@@ -1,5 +1,17 @@
 type Token @entity {
-    id: ID! # Token address
+    id: ID!
+    address: Bytes!
+    owner: Bytes!
     name: String!
-    address: String!
+    symbol: String!
+    totalSupply: BigInt!
+    kind: String!
+    content: String!
+}
+
+type TokenCreation @entity {
+    id: ID!
+    event: String!
+    token: Token! @derivedFrom(field: "id")
+    timestamp: BigInt!
 }
