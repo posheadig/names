@@ -21,12 +21,10 @@ dataSources:
       abis:
         - name: MintQuest
           file: ./abis/MintQuest.json
-        - name: SimpleToken
-          file: ./abis/SimpleToken.json
       eventHandlers:
         - event: TokenCreated(address,address)
           handler: handleTokenCreated
-      templates:
+templates:
   - name: SimpleToken
     kind: ethereum/contract
     network: sepolia
@@ -39,7 +37,7 @@ dataSources:
       file: ./src/mapping.ts
       entities:
         - Token
-        - TokenCreation
       abis:
         - name: SimpleToken
           file: ./abis/SimpleToken.json
+
