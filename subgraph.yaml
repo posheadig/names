@@ -9,7 +9,7 @@ dataSources:
     source:
       address: 0xea667642aE384fFe647a6163e79d20F468B538dc
       abi: MintQuest
-      startBlock: 	4152580
+      startBlock: 4152580
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -17,13 +17,15 @@ dataSources:
       file: ./src/mapping.ts
       entities:
         - Token
-        - TokenCreation
       abis:
         - name: MintQuest
           file: ./abis/MintQuest.json
+        - name: SimpleToken
+          file: ./abis/SimpleToken.json
       eventHandlers:
         - event: TokenCreated(address,address)
           handler: handleTokenCreated
+
 templates:
   - name: SimpleToken
     kind: ethereum/contract
