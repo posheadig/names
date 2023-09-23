@@ -6,7 +6,7 @@ export function handleTokenCreated(event: TokenCreated): void {
     let token = new Token(event.transaction.hash.toHexString())
     token.address = event.params.tokenAddress
     token.owner = event.params.owner
-    
+    SimpleToken.create(event.params.tokenAddress);
     // Instantiate the token contract using the token's address
     let tokenContract = SimpleToken.bind(event.params.tokenAddress)
         
