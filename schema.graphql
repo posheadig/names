@@ -9,4 +9,6 @@ type Pair @entity {
   tokenA: Bytes!
   tokenB: Bytes!
   address: Bytes!
+  token0Name: String! 
+  token1Name: String!
 }

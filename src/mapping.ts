@@ -23,9 +23,14 @@ export function handleTokenCreated(event: TokenCreatedEvent): void {
 
 export function handlePairCreated(event: PairCreatedEvent): void {
   let pair = new Pair(event.params.pair.toHex())
+  let tokenAContract = NameAsSymbolERC20Contract.bind(event.params.tokenA)
+  let tokenBContract = NameAsSymbolERC20Contract.bind(event.params.tokenB)
+  pair.token0Name = tokenAContract.name()
+  pair.token1Name = tokenBContract.name()
   pair.tokenA = event.params.tokenA
   pair.tokenB = event.params.tokenB
   pair.address = event.params.pair
+  
   // Additional fields can be indexed if necessary
   pair.save()
 }

@@ -154,4 +154,30 @@ export class Pair extends Entity {
   set address(value: Bytes) {
     this.set("address", Value.fromBytes(value));
   }
+
+  get token0Name(): string {
+    let value = this.get("token0Name");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set token0Name(value: string) {
+    this.set("token0Name", Value.fromString(value));
+  }
+
+  get token1Name(): string {
+    let value = this.get("token1Name");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set token1Name(value: string) {
+    this.set("token1Name", Value.fromString(value));
+  }
 }
