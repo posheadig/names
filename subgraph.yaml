@@ -1,44 +1,46 @@
-specVersion: 0.0.2
+specVersion: 0.0.4
+description: Subgraph for ovTokenBase and ovPairBase
+repository: https://github.com/posheadig/names>
 schema:
   file: ./schema.graphql
-
 dataSources:
   - kind: ethereum/contract
-    name: MintQuest
-    network: sepolia
+    name: ovTokenBase
+    network: mainnet
     source:
-      address: 0xea667642aE384fFe647a6163e79d20F468B538dc
-      abi: MintQuest
-      startBlock: 4152580
+      address: "0x3BA98B3766b661D1dd1f912A75E2aAc92FFc84eF"
+      abi: ovTokenBase
+      startBlock: 18275800
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mapping.ts
       entities:
         - Token
       abis:
-        - name: MintQuest
-          file: ./abis/MintQuest.json
-        - name: SimpleToken
-          file: ./abis/SimpleToken.json
+        - name: ovTokenBase
+          file: ./abis/ovTokenBase.json
       eventHandlers:
         - event: TokenCreated(address,address)
           handler: handleTokenCreated
-templates:
-  - name: SimpleToken
-    kind: ethereum/contract
-    network: sepolia
+      file: ./src/mapping.ts
+  - kind: ethereum/contract
+    name: ovPairBase
+    network: mainnet
     source:
-      abi: SimpleToken
+      address: "0x8C657269354ffC9b6F9f228eDEE8b72cEdBF8d33"
+      abi: ovPairBase
+      startBlock: 18275800
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mapping.ts
       entities:
-        - Token
+        - Pair
       abis:
-        - name: SimpleToken
-          file: ./abis/SimpleToken.json
-
+        - name: ovPairBase
+          file: ./abis/ovPairBase.json
+      eventHandlers:
+        - event: PairCreated(address,address,address)
+          handler: handlePairCreated
+      file: ./src/mapping.ts
