@@ -1,6 +1,13 @@
 type Token @entity {
-    id: ID!
-    address: Bytes!
-    name: String!
-    symbol: String!
+  id: ID!
+  name: String!
+  address: Bytes!
+}
+
+type Pair @entity {
+  id: ID!
+  tokenA: Token! @link
+  tokenB: Token! @link
+  address: Bytes!
+  // ... other fields to index
 }
