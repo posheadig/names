@@ -2,7 +2,7 @@ specVersion: 0.0.4
 description: Subgraph for ovTokenBase and ovPairBase
 repository: https://github.com/posheadig/names>
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum/contract
     name: ovTokenBase
@@ -19,13 +19,13 @@ dataSources:
         - Token
       abis:
         - name: ovTokenBase
-          file: ./abis/ovTokenBase.json
+          file: ovTokenBase/abis/ovTokenBase.json
         - name: NameAsSymbolERC20
-          file: ./abis/NameAsSymbolERC20.json
+          file: ovTokenBase/abis/NameAsSymbolERC20.json
       eventHandlers:
         - event: TokenCreated(indexed address,indexed address)
           handler: handleTokenCreated
-      file: ./src/mapping.ts
+      file: ovTokenBase/ovTokenBase.wasm
   - kind: ethereum/contract
     name: ovPairBase
     network: mainnet
@@ -41,8 +41,8 @@ dataSources:
         - Pair
       abis:
         - name: ovPairBase
-          file: ./abis/ovPairBase.json
+          file: ovPairBase/abis/ovPairBase.json
       eventHandlers:
         - event: PairCreated(indexed address,indexed address,address)
           handler: handlePairCreated
-      file: ./src/mapping.ts
+      file: ovTokenBase/ovTokenBase.wasm

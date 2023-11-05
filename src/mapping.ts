@@ -2,27 +2,30 @@ import { BigInt } from "@graphprotocol/graph-ts"
 import {
   ovTokenBase as ovTokenBaseContract,
   TokenCreated as TokenCreatedEvent,
-  PairCreated as PairCreatedEvent
 } from "../generated/ovTokenBase/ovTokenBase"
+import { PairCreated as PairCreatedEvent } from "../generated/ovPairBase/ovPairBase"
 import { Token, Pair } from "../generated/schema"
+import { NameAsSymbolERC20 as NameAsSymbolERC20Contract } from "../generated/ovTokenBase/NameAsSymbolERC20"
 
 export function handleTokenCreated(event: TokenCreatedEvent): void {
   let token = new Token(event.params.token.toHex())
-  let contract = ovTokenBaseContract.bind(event.params.token)
-  let nameResult = contract.try_name() // This calls the 'name' function on your ERC20 contract
+  let contract = NameAsSymbolERC20Contract.bind(event.params.token)
+  
+  // Call the 'name' function on your ERC20 contract
+  token.name = contract.name()
 
-  if (!nameResult.reverted) {
-    token.name = nameResult.value
-  }
   token.address = event.params.token
+  // Remove the line with 'owner' if it's not in your schema
+  // token.owner = event.params.owner
   token.save()
 }
 
+
 export function handlePairCreated(event: PairCreatedEvent): void {
   let pair = new Pair(event.params.pair.toHex())
-  pair.tokenA = event.params.tokenA.toHex()
-  pair.tokenB = event.params.tokenB.toHex()
+  pair.tokenA = event.params.tokenA
+  pair.tokenB = event.params.tokenB
   pair.address = event.params.pair
-  // ... other fields to populate
+  // Additional fields can be indexed if necessary
   pair.save()
 }
