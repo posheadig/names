@@ -48,3 +48,23 @@ dataSources:
         - event: PairCreated(indexed address,indexed address,address)
           handler: handlePairCreated
       file: ovTokenBase/ovTokenBase.wasm
+  - kind: ethereum/contract
+    name: ovPoolBase
+    network: mainnet
+    source:
+      address: "0x5587a86C580E04D6157c84FD85758AccbA0b7934"
+      abi: ovPoolBase
+      startBlock: 18581120
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Pair
+      abis:
+        - name: ovPoolBase
+          file: ovPoolBase/abis/ovPoolBase.json
+      eventHandlers:
+        - event: PairCreated(indexed address,indexed address,address)
+          handler: handlePairCreatedAdditional
+      file: ovTokenBase/ovTokenBase.wasm

@@ -49,11 +49,11 @@ dataSources:
           handler: handlePairCreated
       file: ./src/mapping.ts
   - kind: ethereum/contract
-    name: ovPairBaseAdditional
+    name: ovPoolBase
     network: mainnet
     source:
       address: "0x5587a86C580E04D6157c84FD85758AccbA0b7934"
-      abi: ovPairBase
+      abi: ovPoolBase
       startBlock: 18581120
     mapping:
       kind: ethereum/events
@@ -62,8 +62,8 @@ dataSources:
       entities:
         - Pair
       abis:
-        - name: ovPairBase
-          file: ./abis/ovPairBase.json
+        - name: ovPoolBase
+          file: ./abis/ovPoolBase.json
       eventHandlers:
         - event: PairCreated(indexed address,indexed address,address)
           handler: handlePairCreatedAdditional

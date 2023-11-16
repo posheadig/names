@@ -4,6 +4,7 @@ import {
   TokenCreated as TokenCreatedEvent,
 } from "../generated/ovTokenBase/ovTokenBase"
 import { PairCreated as PairCreatedEvent } from "../generated/ovPairBase/ovPairBase"
+import { PairCreated as PairCreatedEventPool } from "../generated/ovPoolBase/ovPoolBase"
 import { Token, Pair } from "../generated/schema"
 import { NameAsSymbolERC20 as NameAsSymbolERC20Contract } from "../generated/ovTokenBase/NameAsSymbolERC20"
 
@@ -35,7 +36,7 @@ export function handlePairCreated(event: PairCreatedEvent): void {
   // Additional fields can be indexed if necessary
   pair.save()
 }
-export function handlePairCreatedAdditional(event: PairCreatedEvent): void {
+export function handlePairCreatedAdditional(event: PairCreatedEventPool): void {
   let pair = new Pair(event.params.pair.toHex())
 
   // Additional or modified logic for the new ovPairBase contract
