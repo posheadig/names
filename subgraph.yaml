@@ -48,7 +48,7 @@ dataSources:
         - event: PairCreated(indexed address,indexed address,address)
           handler: handlePairCreated
       file: ./src/mapping.ts
-    - kind: ethereum/contract
+  - kind: ethereum/contract
     name: ovPairBaseAdditional
     network: mainnet
     source:
