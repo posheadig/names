@@ -64,6 +64,8 @@ dataSources:
       abis:
         - name: ovPoolBase
           file: ./abis/ovPoolBase.json
+        - name: NameAsSymbolERC20
+          file: ./abis/NameAsSymbolERC20.json
       eventHandlers:
         - event: PairCreated(indexed address,indexed address,address)
           handler: handlePairCreatedAdditional
