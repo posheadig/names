@@ -35,3 +35,17 @@ export function handlePairCreated(event: PairCreatedEvent): void {
   // Additional fields can be indexed if necessary
   pair.save()
 }
+export function handlePairCreatedAdditional(event: PairCreatedEvent): void {
+  let pair = new Pair(event.params.pair.toHex())
+
+  // Additional or modified logic for the new ovPairBase contract
+  pair.tokenA = event.params.tokenA
+  pair.tokenB = event.params.tokenB
+  let tokenAContract = NameAsSymbolERC20Contract.bind(event.params.tokenA)
+  let tokenBContract = NameAsSymbolERC20Contract.bind(event.params.tokenB)
+  pair.token0Name = tokenAContract.name()
+  pair.token1Name = tokenBContract.name()
+  pair.address = event.params.pair
+  
+  pair.save()
+}
